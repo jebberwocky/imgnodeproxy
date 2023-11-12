@@ -1,0 +1,13 @@
+{
+    "api":{"host":"","port":""},
+    "logs":{"filename":"logs/all.log"},
+    "service-logs":{"filename":"logs/service-log.log" },
+    "error-logs":{"filename":"logs/error-log.log" },
+    "env":{"port":""},
+    "remote-service":{
+        "uri":"","port":""
+    },
+    "openai":{
+
+    }
+}
