@@ -9,12 +9,15 @@ const bodyParser = require('body-parser');
 const corsoption = { origin: "*"}
 const { fetch } = require('node-fetch');
 var session = require('express-session')
+const fileUpload = require('express-fileupload')
 
-
+app.use(fileUpload())
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors(corsoption));
 app.use(express.json());
 app.options('*', cors(corsoption))
+
+app.use('/uploads/user', express.static(__dirname + '/upload/user'));
 
 app.use(session({
   secret: 'showmethemonkey',
@@ -43,6 +46,8 @@ app.use(expressWinston.errorLogger({
 
 const proxyRoutes = require("./routes/proxy")
 app.use('/', proxyRoutes);
+const uploadRoutes = require("./routes/upload")
+app.use('/upload', uploadRoutes);
 
 app.listen(port, () => {
   console.log(`proxy node server is running on port ${port}`);
