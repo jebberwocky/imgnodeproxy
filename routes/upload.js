@@ -14,7 +14,8 @@ router.post('/upload', (req, res) => {
     var result  = {
         "status":"s",
         "message":"",
-        "path":"/uploads/user/"+filename
+        "path":"/uploads/user/"+filename,
+        "filename":filename
     }
     res.send(result)
 });
