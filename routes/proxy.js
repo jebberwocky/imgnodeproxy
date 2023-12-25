@@ -7,9 +7,9 @@ router.get('/', (req, res) => {
     var url = req.query.url,
         mh = req.query.mh;
     if(url){
-        console.log(url)
-        url = decodeURIComponent(url)
-        console.log(url)
+        console.log("undecoded: "+url)
+        //url = decodeURIComponent(url)
+        //console.log(url)
         try {
             var imgfile = './img/img_'+mh+'_'+Date.now()+'.png'
         fetch(url).then((actual) => {
