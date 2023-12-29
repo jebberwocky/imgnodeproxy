@@ -5,13 +5,12 @@ const {createWriteStream} = require("fs");
 
 router.get('/', (req, res) => {
     var url = req.query.url,
-        mh = req.query.mh;
+        mhbs58 = req.query.mhbs58;
     if(url){
+        console.log('mhbs58: '+mhbs58)
         console.log("undecoded: "+url)
-        //url = decodeURIComponent(url)
-        //console.log(url)
         try {
-            var imgfile = './img/img_'+mh+'_'+Date.now()+'.png'
+            var imgfile = './img/img_'+mhbs58+'_'+Date.now()+'.png'
         fetch(url).then((actual) => {
             actual.headers.forEach((v, n) => res.setHeader(n, v));
             actual.body.pipe(createWriteStream(imgfile));
