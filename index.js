@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const p = 3301
+const auido_proxy_directory = "/mnt/volume_nyc1_01/tts_audio"
 const port = process.env.PORT || p;
 const cors = require("cors");
 const config = require('config');
@@ -44,6 +45,7 @@ app.use(expressWinston.errorLogger({
   )
 }));
 
+app.use('/audio', express.static(auido_proxy_directory))
 const proxyRoutes = require("./routes/proxy")
 app.use('/', proxyRoutes);
 const uploadRoutes = require("./routes/upload")
