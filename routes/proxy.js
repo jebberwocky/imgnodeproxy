@@ -2,6 +2,7 @@ var express = require('express'),
     router = express.Router();
 const fetch = require('node-fetch')
 const {createWriteStream} = require("fs");
+const { error } = require('console');
 
 router.get('/', (req, res) => {
     var url = req.query.url,
@@ -9,16 +10,17 @@ router.get('/', (req, res) => {
     if(url){
         console.log('mhbs58: '+mhbs58)
         console.log("undecoded: "+url)
-        try {
-            var imgfile = './img/img_'+mhbs58+'_'+Date.now()+'.png'
+        var imgfile = './img/img_'+mhbs58+'_'+Date.now()+'.png'
         fetch(url).then((actual) => {
             actual.headers.forEach((v, n) => res.setHeader(n, v));
-            actual.body.pipe(createWriteStream(imgfile));
+            actual.body.pipe(createWriteStream(imgfile).on('error', (e) => {
+                console.error(error);
+                res.json(error)}));
             actual.body.pipe(res);
-        });}catch (error){
+        }).catch(error=>{
             console.error(error);
-            res.error(error)
-        }
+            res.json(error)
+        })
     }else{
         res.send('nothing')
     }
