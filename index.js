@@ -50,6 +50,8 @@ const proxyRoutes = require("./routes/proxy")
 app.use('/', proxyRoutes);
 const uploadRoutes = require("./routes/upload")
 app.use('/upload', uploadRoutes);
+const resizeRoutes = require("./routes/proxy_size")
+app.use('/resize', resizeRoutes);
 
 app.listen(port, () => {
   console.log(`proxy node server is running on port ${port}`);

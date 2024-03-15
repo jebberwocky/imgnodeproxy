@@ -21,6 +21,7 @@
     "morgan": "^1.10.0",
     "node-fetch": "^2.7.0",
     "request": "^2.88.2",
+    "sharp": "^0.33.2",
     "validator": "^13.9.0",
     "winston": "^3.8.2"
   }
